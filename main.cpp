@@ -1,74 +1,51 @@
 #include <iostream>
-#include <string>
+#include <math.h>
 using namespace std;
-struct lap{
-    int sueldo;
-    string frase;
+class punto{
+public:
+    int x , y;
 
-} italo;
+};
+class vector2{
+public:
+    punto inicio, fin;
 
-bool des(int j, int i)
+};
+void im(vector2 *ptr)
 {
-    return j < i;
+    cout << "( " << ptr->inicio.x << " ," << ptr->inicio.y << " )" << " " << "( " << ptr->fin.x << " ," << ptr->fin.y << " )" << '\n';
 }
-bool asc(int j, int i)
+float mowd(const vector2 *v)
 {
-    return j > i;
-}
-void swapt(int &x , int &y)
-{
-    int temp = x;
-    x = y;
-    y = temp;
-}
+    float e =  v->fin.x - v->inicio.x;
+    float f  = v->fin.y - v->inicio.y;
+    return sqrt((e*e) + (f*f));
 
-void ptr (int *x , int n, bool(*pt)(int, int))
+}
+void cal(vector2 arr[])
 {
-    for(int y  = 0; y < n; y++)
+    int n = 4;
+    for(int z = 0; z < (n); z++)
     {
-        for(int z = y ; z < n ; z++)
-        {
-            if((*pt)(*(x + y), *(x + z)))
-            {
-                swapt(*(x + y), *(x + z));
-            }
-        }
+        cout << mowd(&arr[z]) << '\n';
     }
-}
-
-void print (int cad[], int n)
-{
-    for(int x = 0; x < n; x++)
-    {
-        cout << cad[x] << '\t';
-    }
-
-
-}
-int *functionq(int n){
-    int *per = new int[n];
-    for(int y = 0; y < n; y++)
-    {
-        cin >> *(per + y);
-    }
-
 }
 int main()
 {
+    vector2 v;
+    v.inicio.x = 1;
+    v.inicio.y =2 ;
+    v.fin.x = 3;
+    v.fin.y = 4;
+   /* cout << v.inicio.x << '\n';
+    cout << mowd(v) << '\n';*/
+    vector2 arr[4] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
 
-    /*int cad [] = {12,3,6,2,1,9};
-    int n = sizeof(cad) / sizeof(cad[0]);
-    ptr(cad, n , asc);
-    print(cad,n);*/
-    int n;
-    cin >> n;
-    int *per = new int[n];
-    for(int y = 0; y < n; y++)
-    {
-        cin >> *(per + y);
-    }
-    ptr(per, n , des);
-    print(per, n);
-    delete per;
+    cout << mowd(&arr[0]) << '\n' ;
+    cout << mowd(&arr[1]) << '\n' ;
+    cout << mowd(&arr[2]) << '\n' ;
+    cout << mowd(&arr[3]) << '\n' ;
+    cal(arr);
+    im(&v);
     return 0;
 }
