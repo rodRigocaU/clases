@@ -9,8 +9,11 @@ class pointarray
         pointarray();
         pointarray(const point pts[], const int size);
         pointarray(pointarray &o);
-
+        void print();
         ~pointarray();
+        void resize(int);
+        void push_back(const point &p);
+        void insert(const point &q , int);
 
         int geta();
 
